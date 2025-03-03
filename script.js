@@ -15,14 +15,17 @@ function login() {
     let email = document.getElementById("loginEmail").value;
     let password = document.getElementById("loginPassword").value;
 
-    let users = JSON.parse(localStorage.getItem("users")) || {}; // Load users
+    let users = JSON.parse(localStorage.getItem("users")) || {}; // Retrieve stored users
 
-    console.log("Users at login:", users); // Debugging output
+    console.log("Stored Users:", users); // Debugging output
 
     if (users[email] && users[email] === password) {
         alert("Login successful!");
+        localStorage.setItem("loggedInUser", email); // Store session
+        window.location.href = "store.html"; // Redirect to store after login
     } else {
-        alert("Invalid credentials. Please check your email and password.");
+        alert("Invalid email or password.");
+    }
     }
 function adminLogin() {
     let email = document.getElementById("adminEmail").value;
