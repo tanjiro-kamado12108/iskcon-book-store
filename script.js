@@ -2,17 +2,28 @@ let users = JSON.parse(localStorage.getItem("users")) || {};
 function signUp() {
     let email = document.getElementById("signupEmail").value;
     let password = document.getElementById("signupPassword").value;
-    let confirmPassword = document.getElementById("confirmPassword").value;
-    if (!email || !password || password !== confirmPassword) { alert("Invalid input"); return; }
-    users[email] = password; localStorage.setItem("users", JSON.stringify(users));
-    alert("Account created!"); window.location.href = "index.html";
-}
+
+    let users = JSON.parse(localStorage.getItem("users")) || {}; // Get existing users or create empty object
+    users[email] = password; // Store new user
+
+    localStorage.setItem("users", JSON.stringify(users)); // Save back to localStorage
+
+    console.log("Users after signup:", localStorage.getItem("users")); // Debugging output
+
+    alert("Signup successful! Now login.");
 function login() {
     let email = document.getElementById("loginEmail").value;
     let password = document.getElementById("loginPassword").value;
-    if (users[email] && users[email] === password) { alert("Login successful!"); window.location.href = "store.html"; }
-    else { alert("Invalid credentials!"); }
-}
+
+    let users = JSON.parse(localStorage.getItem("users")) || {}; // Load users
+
+    console.log("Users at login:", users); // Debugging output
+
+    if (users[email] && users[email] === password) {
+        alert("Login successful!");
+    } else {
+        alert("Invalid credentials. Please check your email and password.");
+    }
 function adminLogin() {
     let email = document.getElementById("adminEmail").value;
     let password = document.getElementById("adminPassword").value;
