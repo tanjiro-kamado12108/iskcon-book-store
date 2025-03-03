@@ -1,46 +1,25 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // User login button
     let loginButton = document.getElementById("loginButton");
+    let adminLoginButton = document.getElementById("adminLoginButton");
+
     if (loginButton) {
         loginButton.addEventListener("click", login);
-    } else {
-        console.error("Error: loginButton not found!");
     }
-
-    // Admin login button
-    let adminLoginButton = document.getElementById("adminLoginButton");
     if (adminLoginButton) {
         adminLoginButton.addEventListener("click", adminLogin);
-    } else {
-        console.error("Error: adminLoginButton not found!");
     }
 });
 
-// Load users and admins from localStorage
 let users = JSON.parse(localStorage.getItem("users")) || [];
-let admins = JSON.parse(localStorage.getItem("admins")) || [];
 
-// Ensure at least one admin account exists
-function initializeAdmin() {
-    let defaultAdmin = { email: "admin@iskcon.com", password: "admin123" };
-    
-    let adminExists = admins.some(admin => admin.email === defaultAdmin.email);
-    if (!adminExists) {
-        admins.push(defaultAdmin);
-        localStorage.setItem("admins", JSON.stringify(admins));
-        console.log("Default admin added.");
-    }
-}
-initializeAdmin();
-
-// User Signup
 function signUp() {
     let email = document.getElementById("signupEmail").value;
     let password = document.getElementById("signupPassword").value;
 
     let users = JSON.parse(localStorage.getItem("users")) || [];
 
-    if (users.find(user => user.email === email)) {
+    let existingUser = users.find(user => user.email === email);
+    if (existingUser) {
         alert("User already exists. Please login.");
         return;
     }
@@ -48,12 +27,9 @@ function signUp() {
     users.push({ email, password });
     localStorage.setItem("users", JSON.stringify(users));
 
-    console.log("Users after signup:", localStorage.getItem("users"));
-
     alert("Signup successful! Now login.");
 }
 
-// User Login
 function login() {
     let email = document.getElementById("loginEmail").value;
     let password = document.getElementById("loginPassword").value;
@@ -70,27 +46,26 @@ function login() {
     }
 }
 
-// Admin Login
 function adminLogin() {
-   let email = document.getElementById("adminEmail").value;
+    let email = document.getElementById("adminEmail").value;
     let password = document.getElementById("adminPassword").value;
 
-    // Hardcoded admin credentials
-    const adminCredentials = {
-        email: "admin@iskcon.com",
-        password: "admin123"
-    };
-
-    if (email === adminCredentials.email && password === adminCredentials.password) {
+    if (email === "admin@iskcon.com" && password === "admin123") {
         alert("Admin Login Successful!");
-        localStorage.setItem("loggedInAdmin", email); // Store session
-        window.location.href = "admin.html"; // Redirects to admin panel
+        localStorage.setItem("isAdmin", "true");
+        window.location.href = "orders.html"; // Redirect to Orders Page
     } else {
         alert("Invalid Admin Credentials");
     }
 }
 
-// Checkout
 function checkout() {
     alert("Redirecting to UPI payment: mishrasandeep@fam");
+}
+
+// Admin logout function
+function adminLogout() {
+    localStorage.removeItem("isAdmin");
+    alert("Admin Logged Out!");
+    window.location.href = "admin.html"; // Redirect back to admin login page
 }
