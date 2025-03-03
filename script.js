@@ -1,13 +1,34 @@
-// Ensure Admin is Logged In
 document.addEventListener("DOMContentLoaded", function() {
-    if (localStorage.getItem("isAdminLoggedIn") !== "true") {
-        alert("Access Denied! Please log in.");
-        window.location.href = "admin.html";
+    // Check if on a restricted page (not admin login page)
+    if (window.location.pathname.includes("products.html")) {
+        if (localStorage.getItem("isAdminLoggedIn") !== "true") {
+            alert("Access Denied! Please log in.");
+            window.location.href = "admin.html";
+        } else {
+            displayProducts();
+        }
     }
-    displayProducts();
 });
 
-// Logout Admin
+// Admin Login Function
+function adminLogin() {
+    let email = document.getElementById("adminEmail").value;
+    let password = document.getElementById("adminPassword").value;
+
+    // Hardcoded admin credentials (Replace with backend validation if needed)
+    const adminEmail = "admin@iskcon.com";
+    const adminPassword = "admin123";
+
+    if (email === adminEmail && password === adminPassword) {
+        localStorage.setItem("isAdminLoggedIn", "true");
+        alert("Login Successful!");
+        window.location.href = "products.html";
+    } else {
+        alert("Invalid email or password!");
+    }
+}
+
+// Admin Logout
 function adminLogout() {
     localStorage.removeItem("isAdminLoggedIn");
     alert("Logged out successfully!");
