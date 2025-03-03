@@ -1,46 +1,19 @@
-document.addEventListener("DOMContentLoaded", function () {
-    loadProducts();
-});
-
-function addProduct() {
-    let name = document.getElementById("productName").value;
-    let price = document.getElementById("productPrice").value;
-    let image = document.getElementById("productImage").value;
-
-    if (!name || !price || !image) {
-        alert("Please fill all fields.");
-        return;
-    }
-
+function displayStoreProducts() {
     let products = JSON.parse(localStorage.getItem("products")) || [];
-    products.push({ name, price, image });
+    let storeProducts = document.getElementById("storeProducts");
 
-    localStorage.setItem("products", JSON.stringify(products));
-    alert("Product added successfully!");
-    loadProducts();
-}
+    if (!storeProducts) return;
 
-function loadProducts() {
-    let products = JSON.parse(localStorage.getItem("products")) || [];
-    let productList = document.getElementById("productList");
-
-    if (!productList) return;
-
-    productList.innerHTML = "";
-    products.forEach((product, index) => {
-        productList.innerHTML += `
+    storeProducts.innerHTML = "";
+    products.forEach((product) => {
+        storeProducts.innerHTML += `
             <div class="product">
                 <img src="${product.image}" alt="${product.name}" width="100">
                 <p>${product.name} - ₹${product.price}</p>
-                <button onclick="removeProduct(${index})">Remove</button>
+                <button onclick="checkout()">Buy Now</button>
             </div>
         `;
     });
 }
 
-function removeProduct(index) {
-    let products = JSON.parse(localStorage.getItem("products")) || [];
-    products.splice(index, 1);
-    localStorage.setItem("products", JSON.stringify(products));
-    loadProducts();
-}
+document.addEventListener("DOMContentLoaded", displayStoreProducts);
