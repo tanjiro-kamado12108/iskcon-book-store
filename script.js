@@ -9,14 +9,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
 function signUp() {
     let email = document.getElementById("signupEmail").value;
     let password = document.getElementById("signupPassword").value;
 
-    let users = JSON.parse(localStorage.getItem("users")) || {}; // Retrieve stored users as an object
-    users[email] = password; // Store new user with email as the key
+    let users = JSON.parse(localStorage.getItem("users")) || [];
 
-    localStorage.setItem("users", JSON.stringify(users)); // Save back as an object
+    // Check if user already exists
+    let existingUser = users.find(user => user.email === email);
+    if (existingUser) {
+        alert("User already exists. Please login.");
+        return;
+    }
+
+    // Store new user as object inside an array
+    users.push({ email, password });
+
+    localStorage.setItem("users", JSON.stringify(users)); // Save back to localStorage
 
     console.log("Users after signup:", localStorage.getItem("users")); // Debugging output
 
@@ -27,11 +38,13 @@ function login() {
     let email = document.getElementById("loginEmail").value;
     let password = document.getElementById("loginPassword").value;
 
-    let users = JSON.parse(localStorage.getItem("users")) || {}; // Retrieve stored users as an object
+    let users = JSON.parse(localStorage.getItem("users")) || [];
 
     console.log("Stored Users:", users); // Debugging output
 
-    if (users[email] && users[email] === password) { 
+    let foundUser = users.find(user => user.email === email && user.password === password);
+
+    if (foundUser) {
         alert("Login successful!");
         localStorage.setItem("loggedInUser", email); // Store session
         window.location.href = "store.html"; // Redirect to store after login
@@ -52,6 +65,6 @@ function adminLogin() {
     }
 }
 
-function checkout() { 
-    alert("Redirecting to UPI payment: mishrasandeep@fam"); 
+function checkout() {
+    alert("Redirecting to UPI payment: mishrasandeep@fam");
 }
