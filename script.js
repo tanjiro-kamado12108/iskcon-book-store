@@ -1,38 +1,30 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Check if on a restricted page (not admin login page)
+    // Only display products if on the products page
     if (window.location.pathname.includes("products.html")) {
-        if (localStorage.getItem("isAdminLoggedIn") !== "true") {
-            alert("Access Denied! Please log in.");
-            window.location.href = "admin.html";
-        } else {
-            displayProducts();
-        }
+        displayProducts();
     }
 });
 
-// Admin Login Function
+// Admin Login Function (No forced login check)
 function adminLogin() {
     let email = document.getElementById("adminEmail").value;
     let password = document.getElementById("adminPassword").value;
 
-    // Hardcoded admin credentials (Replace with backend validation if needed)
     const adminEmail = "admin@iskcon.com";
     const adminPassword = "admin123";
 
     if (email === adminEmail && password === adminPassword) {
-        localStorage.setItem("isAdminLoggedIn", "true");
         alert("Login Successful!");
-        window.location.href = "products.html";
+        window.location.href = "products.html"; // Redirect to product management
     } else {
         alert("Invalid email or password!");
     }
 }
 
-// Admin Logout
+// Admin Logout (Just redirects, does not block access)
 function adminLogout() {
-    localStorage.removeItem("isAdminLoggedIn");
     alert("Logged out successfully!");
-    window.location.href = "admin.html";
+    window.location.href = "admin.html"; // Redirect back to admin login
 }
 
 // Add New Product
@@ -57,8 +49,9 @@ function addProduct() {
 // Display Products in Table
 function displayProducts() {
     let productList = document.getElementById("productList");
+    if (!productList) return;
+
     productList.innerHTML = "";
-    
     let products = JSON.parse(localStorage.getItem("products")) || [];
 
     products.forEach((product, index) => {
@@ -79,7 +72,7 @@ function deleteProduct(index) {
     let products = JSON.parse(localStorage.getItem("products")) || [];
     products.splice(index, 1);
     localStorage.setItem("products", JSON.stringify(products));
-    
+
     alert("Product deleted!");
     displayProducts();
 }
