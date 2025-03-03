@@ -3,20 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Add Products</title>
+    <title>Admin - Manage Products</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>Add Products</h2>
+    <h2>Admin - Manage Products</h2>
+    <button onclick="adminLogout()">Logout</button>
+
+    <h3>Add New Product</h3>
     <input type="text" id="productName" placeholder="Product Name">
     <input type="number" id="productPrice" placeholder="Price">
     <input type="text" id="productImage" placeholder="Image URL">
     <button onclick="addProduct()">Add Product</button>
 
     <h3>Product List</h3>
-    <div id="productList"></div>
-
-    <button onclick="adminLogout()">Logout</button>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="productList"></tbody>
+    </table>
 
     <script src="script.js"></script>
 </body>
