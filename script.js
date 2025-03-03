@@ -72,16 +72,19 @@ function login() {
 
 // Admin Login
 function adminLogin() {
-    let email = document.getElementById("adminEmail").value;
+   let email = document.getElementById("adminEmail").value;
     let password = document.getElementById("adminPassword").value;
 
-    let admins = JSON.parse(localStorage.getItem("admins")) || [];
-    let foundAdmin = admins.find(admin => admin.email === email && admin.password === password);
+    // Hardcoded admin credentials
+    const adminCredentials = {
+        email: "admin@iskcon.com",
+        password: "admin123"
+    };
 
-    if (foundAdmin) {
+    if (email === adminCredentials.email && password === adminCredentials.password) {
         alert("Admin Login Successful!");
-        localStorage.setItem("loggedInUser", "admin");
-        window.location.href = "admin.html";
+        localStorage.setItem("loggedInAdmin", email); // Store session
+        window.location.href = "admin.html"; // Redirects to admin panel
     } else {
         alert("Invalid Admin Credentials");
     }
