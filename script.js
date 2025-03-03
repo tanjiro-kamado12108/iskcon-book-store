@@ -1,71 +1,46 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let loginButton = document.getElementById("loginButton");
-    let adminLoginButton = document.getElementById("adminLoginButton");
-
-    if (loginButton) {
-        loginButton.addEventListener("click", login);
-    }
-    if (adminLoginButton) {
-        adminLoginButton.addEventListener("click", adminLogin);
-    }
+    loadProducts();
 });
 
-let users = JSON.parse(localStorage.getItem("users")) || [];
+function addProduct() {
+    let name = document.getElementById("productName").value;
+    let price = document.getElementById("productPrice").value;
+    let image = document.getElementById("productImage").value;
 
-function signUp() {
-    let email = document.getElementById("signupEmail").value;
-    let password = document.getElementById("signupPassword").value;
-
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-
-    let existingUser = users.find(user => user.email === email);
-    if (existingUser) {
-        alert("User already exists. Please login.");
+    if (!name || !price || !image) {
+        alert("Please fill all fields.");
         return;
     }
 
-    users.push({ email, password });
-    localStorage.setItem("users", JSON.stringify(users));
+    let products = JSON.parse(localStorage.getItem("products")) || [];
+    products.push({ name, price, image });
 
-    alert("Signup successful! Now login.");
+    localStorage.setItem("products", JSON.stringify(products));
+    alert("Product added successfully!");
+    loadProducts();
 }
 
-function login() {
-    let email = document.getElementById("loginEmail").value;
-    let password = document.getElementById("loginPassword").value;
+function loadProducts() {
+    let products = JSON.parse(localStorage.getItem("products")) || [];
+    let productList = document.getElementById("productList");
 
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-    let foundUser = users.find(user => user.email === email && user.password === password);
+    if (!productList) return;
 
-    if (foundUser) {
-        alert("Login successful!");
-        localStorage.setItem("loggedInUser", email);
-        window.location.href = "store.html";
-    } else {
-        alert("Invalid email or password.");
-    }
+    productList.innerHTML = "";
+    products.forEach((product, index) => {
+        productList.innerHTML += `
+            <div class="product">
+                <img src="${product.image}" alt="${product.name}" width="100">
+                <p>${product.name} - ₹${product.price}</p>
+                <button onclick="removeProduct(${index})">Remove</button>
+            </div>
+        `;
+    });
 }
 
-function adminLogin() {
-    let email = document.getElementById("adminEmail").value;
-    let password = document.getElementById("adminPassword").value;
-
-    if (email === "admin@iskcon.com" && password === "admin123") {
-        alert("Admin Login Successful!");
-        localStorage.setItem("isAdmin", "true");
-        window.location.href = "orders.html"; // Redirect to Orders Page
-    } else {
-        alert("Invalid Admin Credentials");
-    }
-}
-
-function checkout() {
-    alert("Redirecting to UPI payment: mishrasandeep@fam");
-}
-
-// Admin logout function
-function adminLogout() {
-    localStorage.removeItem("isAdmin");
-    alert("Admin Logged Out!");
-    window.location.href = "admin.html"; // Redirect back to admin login page
+function removeProduct(index) {
+    let products = JSON.parse(localStorage.getItem("products")) || [];
+    products.splice(index, 1);
+    localStorage.setItem("products", JSON.stringify(products));
+    loadProducts();
 }
