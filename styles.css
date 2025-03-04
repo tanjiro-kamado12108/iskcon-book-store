@@ -1,73 +1,32 @@
-/* General Styling */
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background-color: #4b4b81;
+    text-align: center;
     color: white;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
 
-/* Container for Login Forms */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-}
-
-/* Individual Login Boxes */
-.login-box {
+#userLogin, #adminLogin {
     background: rgba(255, 255, 255, 0.2);
     padding: 20px;
     border-radius: 10px;
-    text-align: center;
-    width: 300px;
+    display: inline-block;
+    margin-top: 100px;
 }
 
-/* Hide Admin Login by Default */
-.admin-login {
-    display: none;
-}
-
-/* Input Fields */
-input {
+input, button {
     display: block;
-    width: 100%;
-    margin: 10px 0;
+    width: 200px;
+    margin: 10px auto;
     padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.7);
 }
 
-/* Buttons */
-.login-btn, .admin-toggle-btn, .back-btn {
-    background: #ff7eb3;
+button {
+    background-color: #ff6b81;
     color: white;
     border: none;
-    padding: 10px;
-    width: 100%;
     cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: 0.3s;
-    margin-top: 10px;
 }
 
-.login-btn:hover, .admin-toggle-btn:hover, .back-btn:hover {
-    background: #ff477e;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .container {
-        width: 90%;
-    }
+button:hover {
+    background-color: #ff4757;
 }
