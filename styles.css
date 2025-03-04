@@ -1,48 +1,64 @@
-/* General Styles */
+/* Cool Gradient Background */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    flex-direction: column;
+    margin: 0;
 }
 
-/* Login Container */
+/* Centered Login Box */
 .login-container {
-    background: white;
+    background: rgba(255, 255, 255, 0.2); /* Transparent White */
+    backdrop-filter: blur(10px);
     padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    border-radius: 10px;
     text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     width: 300px;
 }
 
+/* Input Fields */
 input {
     display: block;
     width: 100%;
     margin: 10px 0;
-    padding: 8px;
-    border: 1px solid #ccc;
+    padding: 10px;
+    border: none;
     border-radius: 5px;
+    background: rgba(255, 255, 255, 0.7);
 }
 
+/* Login Button */
 button {
-    background: #007BFF;
+    background: #ff7eb3;
     color: white;
     border: none;
     padding: 10px;
     width: 100%;
     cursor: pointer;
     border-radius: 5px;
+    font-size: 16px;
+    transition: 0.3s;
 }
 
 button:hover {
-    background: #0056b3;
+    background: #ff477e;
 }
 
-/* Hide Admin Login */
-#admin-login {
-    display: none;
+/* Sign Up Link */
+p {
+    color: white;
+}
+
+a {
+    color: yellow;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
 }
