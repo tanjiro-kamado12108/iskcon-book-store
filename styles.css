@@ -1,23 +1,71 @@
-/* Cool Gradient Background */
+/* General Styling */
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #667eea, #764ba2);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    color: white;
     margin: 0;
 }
 
-/* Centered Login Box */
-.login-container {
-    background: rgba(255, 255, 255, 0.2); /* Transparent White */
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
+}
+
+.logout-btn {
+    background: #ff7eb3;
+    border: none;
+    padding: 10px 15px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.logout-btn:hover {
+    background: #ff477e;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 200px;
+    padding: 20px;
+    position: absolute;
+    left: 0;
+    top: 70px;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.sidebar a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+/* Main Content */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 220px;
+    padding: 20px;
+}
+
+.main-content {
+    background: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    width: 300px;
+    width: 500px;
 }
 
 /* Input Fields */
@@ -31,7 +79,7 @@ input {
     background: rgba(255, 255, 255, 0.7);
 }
 
-/* Login Button */
+/* Add Book Button */
 button {
     background: #ff7eb3;
     color: white;
@@ -48,17 +96,22 @@ button:hover {
     background: #ff477e;
 }
 
-/* Sign Up Link */
-p {
-    color: white;
+/* Book List */
+#bookList {
+    margin-top: 30px;
 }
 
-a {
-    color: yellow;
-    text-decoration: none;
-    font-weight: bold;
+.book-card {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+    display: inline-block;
+    width: 200px;
+    text-align: center;
 }
 
-a:hover {
-    text-decoration: underline;
+.book-card img {
+    width: 100%;
+    border-radius: 5px;
 }
