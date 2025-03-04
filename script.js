@@ -11,7 +11,7 @@ function adminLogin() {
     if (email === adminEmail && password === adminPassword) {
         localStorage.setItem("adminLoggedIn", "true");
         alert("Login Successful!");
-        window.location.href = "admin-dashboard.html"; // Ensure this file exists
+        window.location.href = "admindashboard.html"; // Redirect to correct file
     } else {
         alert("Invalid Admin Credentials");
     }
@@ -21,7 +21,7 @@ function adminLogin() {
 function adminLogout() {
     localStorage.removeItem("adminLoggedIn");
     alert("Logged out successfully!");
-    window.location.href = "admin.html"; // Ensure this file exists
+    window.location.href = "admin.html";
 }
 
 // Function to display orders (Dummy Orders)
@@ -54,7 +54,7 @@ function addBook() {
 
 // Load orders when on the dashboard
 document.addEventListener("DOMContentLoaded", function() {
-    if (window.location.pathname.includes("admin-dashboard.html")) {
+    if (window.location.pathname.includes("admindashboard.html")) {
         displayOrders();
     }
 });
