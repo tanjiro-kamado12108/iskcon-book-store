@@ -1,82 +1,16 @@
-/* styles.css */
-
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    text-align: center;
-    padding: 20px;
-}
-
-h2 {
-    color: #333;
-}
-
-/* Centered Login Container */
-.login-container, .dashboard-container {
-    width: 350px;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    margin: auto;
-    margin-top: 50px;
-}
-
-input {
-    width: 90%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Orders and Product List Styling */
-.orders-container, .products-container {
+.order {
     width: 80%;
     background: white;
     padding: 20px;
+    margin: 20px auto;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    margin: auto;
-    margin-top: 30px;
+    text-align: center;
 }
 
-.product {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-.product img {
-    width: 50px;
+.order-image {
+    width: 150px;
     height: auto;
     border-radius: 5px;
-}
-
-/* Mobile Responsive */
-@media (max-width: 600px) {
-    .login-container, .dashboard-container {
-        width: 90%;
-    }
-    .orders-container, .products-container {
-        width: 95%;
-    }
+    margin-bottom: 10px;
 }
