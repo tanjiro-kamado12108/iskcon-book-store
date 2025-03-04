@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- User Login -->
+        <div class="login-box user-login">
+            <h2>User Login</h2>
+            <input type="email" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <button class="login-btn">Login</button>
+            <p>Don't have an account? <a href="#">Sign Up</a></p>
+            <button class="admin-toggle-btn" onclick="showAdminLogin()">Login as Admin</button>
+        </div>
+
+        <!-- Admin Login (Hidden by Default) -->
+        <div class="login-box admin-login" id="adminLogin">
+            <h2>Admin Login</h2>
+            <input type="email" placeholder="Admin Email">
+            <input type="password" placeholder="Admin Password">
+            <button class="login-btn">Admin Login</button>
+            <button class="back-btn" onclick="hideAdminLogin()">Back</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
