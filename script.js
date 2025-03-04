@@ -50,7 +50,7 @@ function addBook() {
 
 // Load orders when on the dashboard
 document.addEventListener("DOMContentLoaded", function() {
-    if (window.location.pathname.includes("admin-dashboard.html")) {
+    if (window.location.pathname.includes("admindashboard.html")) {
         displayOrders();
     }
 });
