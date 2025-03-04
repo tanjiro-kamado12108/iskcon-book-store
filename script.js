@@ -1,26 +1,31 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Initially hide the admin login section
-    hideAdminLogin();
+    const adminLogin = document.getElementById("adminLogin");
+    const userLogin = document.getElementById("userLogin");
 
-    // Event listeners for toggling between login views
-    const showAdminBtn = document.getElementById("showAdminBtn");
-    const hideAdminBtn = document.getElementById("hideAdminBtn");
-
-    if (showAdminBtn) {
-        showAdminBtn.addEventListener("click", showAdminLogin);
+    // Hide admin login by default
+    if (adminLogin) {
+        adminLogin.style.display = "none";
     }
 
-    if (hideAdminBtn) {
-        hideAdminBtn.addEventListener("click", hideAdminLogin);
+    // Check URL parameters to show admin login if requested
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("admin") === "true") {
+        showAdminLogin();
+    }
+
+    // Function to show admin login
+    function showAdminLogin() {
+        if (adminLogin && userLogin) {
+            adminLogin.style.display = "block";
+            userLogin.style.display = "none";
+        }
+    }
+
+    // Function to hide admin login (show user login)
+    function hideAdminLogin() {
+        if (adminLogin && userLogin) {
+            adminLogin.style.display = "none";
+            userLogin.style.display = "block";
+        }
     }
 });
-
-function showAdminLogin() {
-    document.getElementById("adminLogin").style.display = "block";
-    document.getElementById("userLogin").style.display = "none";
-}
-
-function hideAdminLogin() {
-    document.getElementById("adminLogin").style.display = "none";
-    document.getElementById("userLogin").style.display = "block";
-}
