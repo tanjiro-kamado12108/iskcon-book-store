@@ -1,33 +1,60 @@
-document.addEventListener("DOMContentLoaded", function() {
-    if (window.location.pathname.includes("products.html")) {
-        let isAdminLoggedIn = localStorage.getItem("adminLoggedIn");
-        if (!isAdminLoggedIn) {
-            alert("Access Denied! Please login first.");
-            window.location.href = "admin.html";
-        } else {
-            displayProducts();
-        }
-    }
-});
+// script.js
 
+// Dummy admin credentials (You can replace this with a real backend check)
+const adminCredentials = {
+    email: "admin@example.com",
+    password: "admin123"
+};
+
+// Function to handle admin login
 function adminLogin() {
-    let email = document.getElementById("adminEmail").value;
-    let password = document.getElementById("adminPassword").value;
+    const email = document.getElementById("adminEmail").value;
+    const password = document.getElementById("adminPassword").value;
 
-    const adminEmail = "admin@iskcon.com";
-    const adminPassword = "admin123";
-
-    if (email === adminEmail && password === adminPassword) {
+    if (email === adminCredentials.email && password === adminCredentials.password) {
         localStorage.setItem("adminLoggedIn", "true");
-        alert("Login Successful!");
-        window.location.href = "products.html";
+        window.location.href = "admin.html";
     } else {
-        alert("Invalid email or password!");
+        alert("Access Denied! Incorrect email or password.");
     }
 }
 
+// Check if admin is logged in
+function checkAdminAuth() {
+    if (localStorage.getItem("adminLoggedIn") !== "true") {
+        alert("Access Denied! Please log in as an admin.");
+        window.location.href = "login.html";
+    }
+}
+
+// Function to log out admin
 function adminLogout() {
     localStorage.removeItem("adminLoggedIn");
-    alert("Logged out successfully!");
-    window.location.href = "admin.html";
+    window.location.href = "login.html";
+}
+
+// Function to display orders (Dummy Data)
+function displayOrders() {
+    const orders = [
+        { id: 1, book: "Bhagavad Gita", customer: "John Doe", status: "Shipped" },
+        { id: 2, book: "Srimad Bhagavatam", customer: "Jane Smith", status: "Pending" }
+    ];
+    
+    let ordersContainer = document.getElementById("ordersList");
+    ordersContainer.innerHTML = "";
+    orders.forEach(order => {
+        ordersContainer.innerHTML += `<p>Order #${order.id}: ${order.book} - ${order.customer} (${order.status})</p>`;
+    });
+}
+
+// Function to add a new book (Dummy)
+function addBook() {
+    const bookName = document.getElementById("bookName").value;
+    const bookPrice = document.getElementById("bookPrice").value;
+    
+    if (bookName && bookPrice) {
+        alert(`Book '${bookName}' added successfully at ₹${bookPrice}!`);
+    } else {
+        alert("Please enter book details.");
+    }
 }
