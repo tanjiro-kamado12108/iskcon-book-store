@@ -6,7 +6,6 @@
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <script>
-        // Redirect to login if admin is not authenticated
         if (localStorage.getItem("adminLoggedIn") !== "true") {
             alert("Access Denied! Please log in.");
             window.location.href = "admin.html";
@@ -22,8 +21,14 @@
 
     <h3>Add New Book</h3>
     <input type="text" id="bookName" placeholder="Book Name">
+    <input type="text" id="author" placeholder="Author">
+    <input type="text" id="publisher" placeholder="Publisher (Optional)">
     <input type="number" id="bookPrice" placeholder="Price">
+    <input type="text" id="bookImage" placeholder="Book Image URL">
     <button onclick="addBook()">Add Book</button>
+
+    <h3>Book List</h3>
+    <div id="bookList"></div>
 
     <script src="script.js"></script>
 </body>
