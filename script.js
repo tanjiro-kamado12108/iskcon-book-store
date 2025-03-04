@@ -1,3 +1,27 @@
+// Function to handle Admin Login
+function adminLogin() {
+    let email = document.getElementById("adminEmail").value;
+    let password = document.getElementById("adminPassword").value;
+
+    const adminEmail = "admin@example.com";
+    const adminPassword = "admin123";
+
+    if (email === adminEmail && password === adminPassword) {
+        localStorage.setItem("adminLoggedIn", "true");
+        alert("Login Successful!");
+        window.location.href = "admindashboard.html";
+    } else {
+        alert("Invalid Admin Credentials");
+    }
+}
+
+// Function to log out admin
+function adminLogout() {
+    localStorage.removeItem("adminLoggedIn");
+    alert("Logged out successfully!");
+    window.location.href = "admin.html";
+}
+
 // Function to place an order
 function placeOrder() {
     const bookName = document.getElementById("bookName").value;
@@ -11,7 +35,6 @@ function placeOrder() {
         return;
     }
 
-    // Default publisher if not entered
     if (!publisher) {
         publisher = "Bhaktivedanta Book Trust (BBT)";
     }
@@ -44,7 +67,7 @@ function displayOrders() {
     });
 }
 
-// Load orders when viewing orders page
+// Load orders when on orders page
 document.addEventListener("DOMContentLoaded", function() {
     if (window.location.pathname.includes("orders.html")) {
         displayOrders();
