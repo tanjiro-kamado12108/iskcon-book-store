@@ -1,45 +1,34 @@
-// script.js
-
-// Dummy admin credentials (You can replace this with a real backend check)
-const adminCredentials = {
-    email: "admin@example.com",
-    password: "admin123"
-};
-
-// Function to handle admin login
+// Function to handle Admin Login
 function adminLogin() {
-    const email = document.getElementById("adminEmail").value;
-    const password = document.getElementById("adminPassword").value;
+    let email = document.getElementById("adminEmail").value;
+    let password = document.getElementById("adminPassword").value;
 
-    if (email === adminCredentials.email && password === adminCredentials.password) {
+    const adminEmail = "admin@example.com";
+    const adminPassword = "admin123";
+
+    if (email === adminEmail && password === adminPassword) {
         localStorage.setItem("adminLoggedIn", "true");
-        window.location.href = "admin.html";
+        alert("Login Successful!");
+        window.location.href = "admin-dashboard.html";
     } else {
-        alert("Access Denied! Incorrect email or password.");
-    }
-}
-
-// Check if admin is logged in
-function checkAdminAuth() {
-    if (localStorage.getItem("adminLoggedIn") !== "true") {
-        alert("Access Denied! Please log in as an admin.");
-        window.location.href = "login.html";
+        alert("Invalid Admin Credentials");
     }
 }
 
 // Function to log out admin
 function adminLogout() {
     localStorage.removeItem("adminLoggedIn");
-    window.location.href = "login.html";
+    alert("Logged out successfully!");
+    window.location.href = "admin.html";
 }
 
-// Function to display orders (Dummy Data)
+// Function to display orders (Dummy Orders)
 function displayOrders() {
     const orders = [
         { id: 1, book: "Bhagavad Gita", customer: "John Doe", status: "Shipped" },
         { id: 2, book: "Srimad Bhagavatam", customer: "Jane Smith", status: "Pending" }
     ];
-    
+
     let ordersContainer = document.getElementById("ordersList");
     ordersContainer.innerHTML = "";
     orders.forEach(order => {
@@ -47,7 +36,7 @@ function displayOrders() {
     });
 }
 
-// Function to add a new book (Dummy)
+// Function to add a new book (Dummy Storage)
 function addBook() {
     const bookName = document.getElementById("bookName").value;
     const bookPrice = document.getElementById("bookPrice").value;
@@ -58,3 +47,10 @@ function addBook() {
         alert("Please enter book details.");
     }
 }
+
+// Load orders when on the dashboard
+document.addEventListener("DOMContentLoaded", function() {
+    if (window.location.pathname.includes("admin-dashboard.html")) {
+        displayOrders();
+    }
+});
