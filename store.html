@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ISKCON Bookstore</title>
+    <title>Book Store</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>ISKCON Bookstore</h2>
-    <div id="storeProducts"></div>
+    <h2>Order a Book</h2>
+    
+    <input type="text" id="bookName" placeholder="Book Name">
+    <input type="text" id="author" placeholder="Author">
+    <input type="text" id="publisher" placeholder="Publisher (Optional)">
+    <input type="number" id="bookPrice" placeholder="Price">
+    <input type="text" id="bookImage" placeholder="Book Image URL">
+    
+    <button onclick="placeOrder()">Place Order</button>
 
     <script src="script.js"></script>
 </body>
