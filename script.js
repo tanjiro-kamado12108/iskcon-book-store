@@ -9,7 +9,7 @@ function adminLogin() {
     if (email === adminEmail && password === adminPassword) {
         localStorage.setItem("adminLoggedIn", "true");
         alert("Login Successful!");
-        window.location.href = "admin-dashboard.html";
+        window.location.href = "admindashboard.html";
     } else {
         alert("Invalid Admin Credentials");
     }
