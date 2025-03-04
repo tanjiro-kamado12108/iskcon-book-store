@@ -5,31 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="styles.css">
-    <script>
-        if (localStorage.getItem("adminLoggedIn") !== "true") {
-            alert("Access Denied! Please log in.");
-            window.location.href = "admin.html";
-        }
-    </script>
 </head>
 <body>
-    <h2>Admin Dashboard</h2>
-    <button onclick="adminLogout()">Logout</button>
+    <!-- Navbar -->
+    <div class="navbar">
+        <h2>Admin Dashboard</h2>
+        <button onclick="logout()" class="logout-btn">Logout</button>
+    </div>
 
-    <h3>Orders</h3>
-    <div id="ordersList"></div>
+    <div class="container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <a href="#" id="orders">Orders</a>
+            <a href="#" id="add-book">Add New Book</a>
+            <a href="#" id="book-list">Book List</a>
+        </div>
 
-    <h3>Add New Book</h3>
-    <input type="text" id="bookName" placeholder="Book Name">
-    <input type="text" id="author" placeholder="Author">
-    <input type="text" id="publisher" placeholder="Publisher (Optional)">
-    <input type="number" id="bookPrice" placeholder="Price">
-    <input type="text" id="bookImage" placeholder="Book Image URL">
-    <button onclick="addBook()">Add Book</button>
+        <!-- Add New Book Form -->
+        <div class="main-content">
+            <h2>Add New Book</h2>
+            <form id="addBookForm">
+                <input type="text" id="bookName" placeholder="Book Name" required>
+                <input type="text" id="author" placeholder="Author" required>
+                <input type="text" id="publisher" placeholder="Publisher (Optional)">
+                <input type="number" id="price" placeholder="Price" required>
+                <input type="text" id="imageURL" placeholder="Book Image URL">
+                <button type="submit">Add Book</button>
+            </form>
 
-    <h3>Book List</h3>
-    <div id="bookList"></div>
+            <!-- Book List Display -->
+            <div id="bookList">
+                <h2>Book List</h2>
+                <div id="bookContainer"></div>
+            </div>
+        </div>
+    </div>
 
-    <script src="script.js"></script>
+    <script>
+        document.getElementById("addBookForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            // Get Input Values
+            let bookName = document.getElementById("bookName").value;
+            let author = document.getElementById("author").value;
+            let publisher = document.getElementById("publisher").value || "Bhaktivedanta Book Trust (BBT)";
+            let price = document.getElementById("price").value;
+            let imageURL = document.getElementById("imageURL").value || "default-book.jpg";
+
+            // Create Book Card
+            let bookItem = `
+                <div class="book-card">
+                    <img src="${imageURL}" alt="Book Image">
+                    <h3>${bookName}</h3>
+                    <p><strong>Author:</strong> ${author}</p>
+                    <p><strong>Publisher:</strong> ${publisher}</p>
+                    <p><strong>Price:</strong> ₹${price}</p>
+                </div>
+            `;
+
+            // Append to Book List
+            document.getElementById("bookContainer").innerHTML += bookItem;
+
+            // Clear Form
+            document.getElementById("addBookForm").reset();
+        });
+
+        function logout() {
+            alert("Logged out!");
+            window.location.href = "index.html";
+        }
+    </script>
 </body>
 </html>
