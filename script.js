@@ -2,9 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const adminLogin = document.getElementById("adminLogin");
     const userLogin = document.getElementById("userLogin");
 
-    // Hide admin login by default
+    // Ensure only the user login is visible by default
     if (adminLogin) {
         adminLogin.style.display = "none";
+    }
+    if (userLogin) {
+        userLogin.style.display = "block";
     }
 
     // Check URL parameters to show admin login if requested
@@ -18,14 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (adminLogin && userLogin) {
             adminLogin.style.display = "block";
             userLogin.style.display = "none";
-        }
-    }
-
-    // Function to hide admin login (show user login)
-    function hideAdminLogin() {
-        if (adminLogin && userLogin) {
-            adminLogin.style.display = "none";
-            userLogin.style.display = "block";
         }
     }
 });
