@@ -1,3 +1,5 @@
+// script.js
+
 // Function to handle Admin Login
 function adminLogin() {
     let email = document.getElementById("adminEmail").value;
@@ -9,7 +11,7 @@ function adminLogin() {
     if (email === adminEmail && password === adminPassword) {
         localStorage.setItem("adminLoggedIn", "true");
         alert("Login Successful!");
-        window.location.href = "admindashboard.html";
+        window.location.href = "admin-dashboard.html"; // Ensure this file exists
     } else {
         alert("Invalid Admin Credentials");
     }
@@ -19,7 +21,7 @@ function adminLogin() {
 function adminLogout() {
     localStorage.removeItem("adminLoggedIn");
     alert("Logged out successfully!");
-    window.location.href = "admin.html";
+    window.location.href = "admin.html"; // Ensure this file exists
 }
 
 // Function to display orders (Dummy Orders)
@@ -30,10 +32,12 @@ function displayOrders() {
     ];
 
     let ordersContainer = document.getElementById("ordersList");
-    ordersContainer.innerHTML = "";
-    orders.forEach(order => {
-        ordersContainer.innerHTML += `<p>Order #${order.id}: ${order.book} - ${order.customer} (${order.status})</p>`;
-    });
+    if (ordersContainer) {
+        ordersContainer.innerHTML = "";
+        orders.forEach(order => {
+            ordersContainer.innerHTML += `<p>Order #${order.id}: ${order.book} - ${order.customer} (${order.status})</p>`;
+        });
+    }
 }
 
 // Function to add a new book (Dummy Storage)
@@ -50,7 +54,7 @@ function addBook() {
 
 // Load orders when on the dashboard
 document.addEventListener("DOMContentLoaded", function() {
-    if (window.location.pathname.includes("admindashboard.html")) {
+    if (window.location.pathname.includes("admin-dashboard.html")) {
         displayOrders();
     }
 });
