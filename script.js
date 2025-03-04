@@ -1,26 +1,31 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const adminLogin = document.getElementById("adminLogin");
-    const userLogin = document.getElementById("userLogin");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-    // Ensure only the user login is visible by default
-    if (adminLogin) {
-        adminLogin.style.display = "none";
-    }
-    if (userLogin) {
-        userLogin.style.display = "block";
-    }
+    <!-- User Login Section -->
+    <div id="userLogin">
+        <h2>User Login</h2>
+        <input type="email" placeholder="Email">
+        <input type="password" placeholder="Password">
+        <button>Login</button>
+        <p>Don't have an account? <a href="#">Sign Up</a></p>
+    </div>
 
-    // Check URL parameters to show admin login if requested
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get("admin") === "true") {
-        showAdminLogin();
-    }
+    <!-- Admin Login Section (Hidden by Default) -->
+    <div id="adminLogin" style="display: none;">
+        <h2>Admin Login</h2>
+        <input type="email" placeholder="Admin Email">
+        <input type="password" placeholder="Admin Password">
+        <button>Admin Login</button>
+    </div>
 
-    // Function to show admin login
-    function showAdminLogin() {
-        if (adminLogin && userLogin) {
-            adminLogin.style.display = "block";
-            userLogin.style.display = "none";
-        }
-    }
-});
+    <script src="script.js"></script>
+
+</body>
+</html>
