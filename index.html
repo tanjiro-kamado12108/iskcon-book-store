@@ -3,25 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - ISKCON Bookstore</title>
+    <title>Login Page</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="login-container">
         <h2>User Login</h2>
-        <input type="email" id="loginEmail" placeholder="Enter your email">
-        <input type="password" id="loginPassword" placeholder="Enter your password">
-        <button id="loginButton">Login</button>
+        <input type="email" placeholder="Email" id="user-email">
+        <input type="password" placeholder="Password" id="user-password">
+        <button onclick="userLogin()">Login</button>
         <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
     </div>
 
-    <div class="admin-login-container">
+    <!-- Hidden Admin Login -->
+    <div id="admin-login">
         <h2>Admin Login</h2>
-        <input type="email" id="adminEmail" placeholder="Admin Email">
-        <input type="password" id="adminPassword" placeholder="Admin Password">
+        <input type="email" placeholder="Admin Email" id="admin-email">
+        <input type="password" placeholder="Admin Password" id="admin-password">
         <button onclick="adminLogin()">Admin Login</button>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function userLogin() {
+            alert("User Login Clicked!");
+        }
+
+        function adminLogin() {
+            alert("Admin Login Clicked!");
+        }
+    </script>
 </body>
 </html>
